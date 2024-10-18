@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <section class="container">
+        <header>OCR Results</header>
+        <form class="form">
+            <div class="input_box">
+                <label>First Name</label>
+                <input type="text" name="first_name" value="{{ first_name }}" readonly/>
+            </div>
+
+            <div class="input_box">
+                <label>Second Name</label>
+                <input type="text" name="second_name" value="{{ second_name }}" readonly/>
+            </div>
+
+            <div class="input_box">
+                <label>CNP</label>
+                <input type="text" name="cnp" value="{{ cnp }}" readonly/>
+            </div>
+
+            <div class="input_box">
+                <label>Nationality</label>
+                <input type="text" name="nationality" value="{{ nationality }}" readonly/>
+            </div>
+
+            <div class="input_box">
+                <label>Place of Birth</label>
+                <input type="text" name="birthday_place" value="{{ birthday_place }}" readonly/>
+            </div>
+
+            <div class="input_box">
+                <label>Address</label>
+                <input type="text" name="address" value="{{ adress }}" readonly/>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

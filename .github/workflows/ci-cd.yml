@@ -1,0 +1,43 @@
+name: CI/CD Pipeline for OCR-Application
+
+# Rulează workflow-ul la fiecare push sau pull request pe branch-ul 'main'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pasul 1: Checkout codul din repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Pasul 2: Setează mediul Python pentru proiect
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+
+      # Pasul 3: Instalează dependențele din requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Pasul 4: Construiește imaginea Docker folosind Dockerfile
+      - name: Build Docker image
+        run: docker build -t constanttkrm/ocr-application .
+
+      # Pasul 5: Logare pe Docker Hub folosind secretele din GitHub
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u constanttkrm --password-stdin
+
+      # Pasul 6: Împinge imaginea Docker pe Docker Hub
+      - name: Push Docker image
+        run: docker push constanttkrm/ocr-application

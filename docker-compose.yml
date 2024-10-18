@@ -1,0 +1,15 @@
+#pentru baza de date 
+version: '3'
+services:
+  ocr:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: OCR
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rares

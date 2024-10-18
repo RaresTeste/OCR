@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload ID Card</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <section class="container">
+        <header>Upload Documents</header>
+
+        <!-- Form pentru încărcarea imaginii -->
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="form" id="uploadForm">
+            <!-- Input pentru nume -->
+            <div class="input_box">
+                <label>First Name</label>
+                <input type="text" name="first_name" placeholder="Enter your first name" required />
+            </div>
+
+            <!-- Input pentru prenume -->
+            <div class="input_box">
+                <label>Second Name</label>
+                <input type="text" name="second_name" placeholder="Enter your second name" required />
+            </div>
+
+            <!-- Input pentru CNP -->
+            <div class="input_box">
+                <label>CNP</label>
+                <input type="text" name="cnp" placeholder="Enter your CNP" required />
+            </div>
+
+            <div class="column">
+                <!-- Input pentru cetățenie -->
+                <div class="input_box">
+                    <label>Nationality</label>
+                    <input type="text" name="nationality" placeholder="Enter your Nationality" required />
+                </div>
+
+                <!-- Input pentru adresă -->
+                <div class="input_box">
+                    <label>Address</label>
+                    <input type="text" name="address" placeholder="Enter your Address" required />
+                </div>
+            </div>
+
+            <!-- Input pentru încărcarea imaginii (ascuns) -->
+            <div class="input_box" style="display: none;">
+                <input type="file" id="fileInput" name="image" accept="image/*" required />
+            </div>
+
+            <!-- Buton pentru deschiderea ferestrei de încărcare imagine -->
+            <button type="button" onclick="document.getElementById('fileInput').click();">Upload your ID card</button>
+        </form>
+
+        <script>
+            // După ce se selectează fișierul, formularul se trimite automat
+            document.getElementById('fileInput').addEventListener('change', function() {
+                document.getElementById('uploadForm').submit();
+            });
+        </script>
+    </section>
+</body>
+</html>
